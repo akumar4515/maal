@@ -9,24 +9,24 @@ const env = (name, fallback) => process.env[name] || fallback;
 export const AD_SLOTS = {
   // Home: under the chips (desktop / mobile) and inside the video grid
   HOME_TOP: {
-    zoneId: env("NEXT_PUBLIC_ADPROVIDER_TOP_BANNER_ZONE_ID", ""),
+    zoneId: env("NEXT_PUBLIC_ADPROVIDER_TOP_BANNER_ZONE_ID", "6047912"),
     className: env("NEXT_PUBLIC_ADPROVIDER_TOP_BANNER_CLASS", "eas6a97888e2"),
   },
   HOME_MOBILE: {
-    zoneId: env("NEXT_PUBLIC_ADPROVIDER_MOBILE_BANNER_ZONE_ID", ""),
+    zoneId: env("NEXT_PUBLIC_ADPROVIDER_MOBILE_BANNER_ZONE_ID", "6047922"),
     className: env("NEXT_PUBLIC_ADPROVIDER_MOBILE_BANNER_CLASS", "eas6a97888e10"),
   },
   GRID: {
-    zoneId: env("NEXT_PUBLIC_ADPROVIDER_CONTENT_BANNER_1_ZONE_ID", ""),
+    zoneId: env("NEXT_PUBLIC_ADPROVIDER_CONTENT_BANNER_1_ZONE_ID", "6047186"),
     className: env("NEXT_PUBLIC_ADPROVIDER_CONTENT_BANNER_1_CLASS", "eas6a97888e2"),
   },
   // Watch page: under the player and above "Related videos"
   WATCH_BELOW_PLAYER: {
-    zoneId: env("NEXT_PUBLIC_ADPROVIDER_CONTENT_BANNER_2_ZONE_ID", ""),
+    zoneId: env("NEXT_PUBLIC_ADPROVIDER_CONTENT_BANNER_2_ZONE_ID", "6046962"),
     className: env("NEXT_PUBLIC_ADPROVIDER_CONTENT_BANNER_2_CLASS", "eas6a97888e2"),
   },
   WATCH_SIDEBAR: {
-    zoneId: env("NEXT_PUBLIC_ADPROVIDER_SIDEBAR_BANNER_ZONE_ID", ""),
+    zoneId: env("NEXT_PUBLIC_ADPROVIDER_SIDEBAR_BANNER_ZONE_ID", "6047918"),
     className: env("NEXT_PUBLIC_ADPROVIDER_SIDEBAR_BANNER_CLASS", "eas6a97888e2"),
   },
 };
@@ -34,7 +34,7 @@ export const AD_SLOTS = {
 export const AD_VAST = {
   PREROLL: env(
     "NEXT_PUBLIC_ADPROVIDER_PREROLL_VAST_URL",
-    ""
+    "https://s.magsrv.com/v1/vast.php?idzone=6047908"
   ),
 };
 
@@ -53,7 +53,7 @@ export const ADS_ENABLED =
   process.env.NODE_ENV === "production" ||
   process.env.NEXT_PUBLIC_ENABLE_ADS_DEV === "true";
 
-export const POPUNDER_ZONE_ID = env("NEXT_PUBLIC_ADPROVIDER_POPUNDER_ZONE_ID", "");
+export const POPUNDER_ZONE_ID = env("NEXT_PUBLIC_ADPROVIDER_POPUNDER_ZONE_ID", "6047926");
 
 // On when a popunder zone id is set; force off with NEXT_PUBLIC_ENABLE_POPUNDER=false
 export const POPUNDER_ENABLED =

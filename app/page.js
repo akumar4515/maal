@@ -27,6 +27,10 @@ export default function Home() {
           <Link href="/">Home</Link>
           <span>·</span>
           <span>18+ Only</span>
+          <span>·</span>
+          <Link href="/privacy-policy">Privacy Policy</Link>
+          <span>·</span>
+          <Link href="/disclaimer">Disclaimer</Link>
         </div>
         <p>© {new Date().getFullYear()} maal. All rights reserved.</p>
       </footer>

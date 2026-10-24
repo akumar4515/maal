@@ -1,11 +1,16 @@
 export const PAGE_SIZE = 24;
 
 // Server-side only. Supports the old NEXT_PUBLIC_ name too so existing .env files keep working.
-const BACKEND = (
+const BACKEND = normalizeBackendUrl(
   process.env.API_BASE_URL ||
-  process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "https://halloween-backend-cria.onrender.com"
-).replace(/\/+$/, "");
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    "https://halloween-backend-cria.onrender.com"
+);
+
+function normalizeBackendUrl(value) {
+  const normalized = String(value || "").replace(/\/+$/, "");
+  return normalized.endsWith("/api") ? normalized.slice(0, -4) : normalized;
+}
 
 const EPORNER_API = "https://www.eporner.com/api/v2";
 
@@ -109,13 +114,14 @@ function normalizeVideo(v) {
 
 function extractVideos(payload) {
   if (!payload) return [];
-  if (payload.success && payload.data) {
-    if (Array.isArray(payload.data)) return payload.data;
-    if (Array.isArray(payload.data.videos)) return payload.data.videos;
-    if (Array.isArray(payload.data.data)) return payload.data.data;
-  }
-  if (Array.isArray(payload.videos)) return payload.videos;
-  if (Array.isArray(payload)) return payload;
+  const data = payload.data ?? payload;
+  if (Array.isArray(data)) return data;
+  if (Array.isArray(data?.videos)) return data.videos;
+  if (Array.isArray(data?.data)) return data.data;
+  if (Array.isArray(data?.results)) return data.results;
+  if (Array.isArray(data?.items)) return data.items;
+  if (Array.isArray(payload?.videos)) return payload.videos;
+  if (Array.isArray(payload?.results)) return payload.results;
   return [];
 }
 
@@ -232,7 +238,7 @@ export async function fetchVideoById(id) {
 
   try {
     const data = await fetchJson(
-      `${BACKEND}/api/eporner/video/${encodeURIComponent(idStr)}`
+      `${BACKEND}/api/eporner/videos/${encodeURIComponent(idStr)}`
     );
     const raw = data?.data || data?.video || data;
     const video = normalizeVideo(raw);

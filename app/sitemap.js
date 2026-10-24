@@ -2,7 +2,7 @@ import { fetchVideos } from "./lib/eporner";
 
 export const dynamic = "force-dynamic";
 
-const DEFAULT_SITE_URL = "https://maal.example.com";
+const DEFAULT_SITE_URL = "http://localhost:3000";
 const VIDEO_LIMIT = 500;
 const MAX_PAGES = 10;
 

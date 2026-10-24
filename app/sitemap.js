@@ -63,6 +63,21 @@ export default async function sitemap() {
     },
   ];
 
+  const legalPages = [
+    {
+      url: `${siteUrl}/privacy-policy`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${siteUrl}/disclaimer`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+  ];
+
   const videoPages = videos.map((video) => ({
     url: `${siteUrl}/watch/${encodeURIComponent(String(video.id))}`,
     lastModified: video.added ? parseDate(video.added) || now : now,
@@ -70,7 +85,7 @@ export default async function sitemap() {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...videoPages];
+  return [...staticPages, ...legalPages, ...videoPages];
 }
 
 function parseDate(value) {
